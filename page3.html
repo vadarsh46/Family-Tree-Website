@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Family Tree</title>
+  <link rel="stylesheet" href="page3-styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+</head>
+
+<body>
+  <h2>Family Tree: <span id="profileName">Loading...</span></h2>
+
+  <div id="controls">
+    <input type="text" id="name" placeholder="Enter name" />
+    <div class="inline-fields">
+      <select id="gender">
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+      </select>
+      <select id="relationship">
+        <option value="root">Root</option>
+        <option value="child">Child</option>
+        <option value="parent">Parent</option>
+        <option value="sibling">Sibling</option>
+        <option value="spouse">Spouse</option>
+      </select>
+    </div>
+
+    <select id="relatedTo"></select>
+
+    <div class="action-buttons">
+      <button id="addPerson">Add Person</button>
+      <button id="deletePerson">Delete Person</button>
+      <a href="page2.html"><button id="backToProfiles">Back to Profiles</button></a>
+      <button id="exportImage">Export as Image</button>
+    </div>
+  </div>
+
+  <div class="tree-wrapper" id="treeWrapper">
+    <div id="treeContainer"></div>
+  </div>
+
+  <script src="page3-script.js"></script>
+</body>
+
+</html>

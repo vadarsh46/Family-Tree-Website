@@ -1,0 +1,304 @@
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #f0f8ff 0%, #e6f2ff 50%, #cce6ff 100%);
+    color: #1d1d1f;
+    margin: 0;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    transition: 0.3s ease;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #0066cc;
+    text-align: center;
+}
+
+#profileName {
+    font-weight: 500;
+}
+
+/* Controls Panel */
+#controls {
+    background: #f0f4f8;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 840px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid #e0e0e0;
+    margin-bottom: 30px;
+}
+
+#controls input,
+#controls select,
+#controls button {
+    padding: 10px 16px;
+    font-size: 15px;
+    border-radius: 10px;
+    border: 1px solid #d0d0d0;
+    background: white;
+    color: #1d1d1f;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s ease;
+}
+
+#controls input:focus,
+#controls select:focus {
+    outline: none;
+    border-color: #0066cc;
+    box-shadow: 0 0 0 2px #0066cc30;
+}
+
+#controls button {
+    background: #0066cc;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    min-width: 110px;
+}
+
+#controls button:hover {
+    background: #0055aa;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 102, 204, 0.2);
+}
+
+#controls button:active {
+    transform: translateY(0);
+}
+
+/* Tree Container */
+#treeContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: none;
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.18);
+    border: 1px solid #ffffff;
+    min-height: 300px;
+    width: max-content;
+    overflow: visible;
+}
+
+.tree-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Tree container */
+.tree {
+    position: relative;
+    display: table;
+    margin: 0 auto;
+    /* root in center */
+    padding-top: 20px;
+    padding-inline-start: 0px;
+}
+
+/* Remove default list styles */
+.tree ul {
+    padding-top: 40px;
+    position: relative;
+    display: table;
+    margin: 0 auto;
+    padding-inline-start: 0px;
+}
+
+/* Vertical line from parent to children */
+.tree ul::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    border-left: 2px solid #444;
+    height: 40px;
+    /* length of vertical line */
+}
+
+.tree li {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding: 20px 5px 0 5px;
+    display: table-cell;
+    /* children spread horizontally */
+    vertical-align: top;
+}
+
+/* Connector lines */
+.tree li::before,
+.tree li::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 50%;
+    border-top: 2px solid #444;
+    width: 50%;
+    height: 20px;
+}
+
+.tree li::before {
+    right: 50%;
+}
+
+.tree li::after {
+    right: auto;
+    left: 50%;
+    border-left: 2px solid #444;
+}
+
+/* Root node (no connectors) */
+.tree li:only-child::before,
+.tree li:only-child::after {
+    display: none;
+}
+
+.tree li:only-child {
+    padding-top: 0;
+}
+
+/* Remove extra lines at edges */
+.tree li:first-child::before,
+.tree li:last-child::after {
+    border: 0 none;
+}
+
+.tree li:last-child::before {
+    border-right: 2px solid #444;
+    border-radius: 0 0 0 5px;
+}
+
+.tree li:first-child::after {
+    border-radius: 0 0 5px 0;
+}
+
+/* Person box */
+.person-box {
+    display: inline-block;
+    padding: 10px 15px;
+    border: 2px solid #444;
+    border-radius: 10px;
+    background: #f9f9f9;
+    font-weight: bold;
+    min-width: 80px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.person-box:hover {
+    background: #e8f0ff;
+    border-color: #0077ff;
+    transform: scale(1.05);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    #controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #controls button,
+    #controls select,
+    #controls input {
+        width: 100%;
+        min-width: auto;
+    }
+
+    #treeContainer {
+        padding: 15px;
+        margin: 0 10px;
+    }
+
+    .generation {
+        margin: 30px 0;
+    }
+
+    .person {
+        font-size: 14px;
+        padding: 8px 12px;
+        margin: 0 8px;
+    }
+
+}
+
+@media (max-width: 480px) {
+    #controls {
+        background: #f0f4f8;
+        padding: 20px 10px;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 840px;
+        gap: 11px;
+        margin-bottom: 20px;
+    }
+
+    #controls #name {
+        padding: 5px 0px;
+    }
+
+    #controls .inline-fields {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .tree-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        margin-left: -35px;
+    }
+
+    #controls .inline-fields select {
+        flex: 1;
+        font-size: 14px;
+        padding: 8px 6px;
+        min-width: auto;
+    }
+
+    #controls .action-buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 5px;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    #controls .action-buttons button {
+        flex: 1 1 auto;
+        font-size: 13px;
+        padding: 6px 5px;
+        min-width: 0;
+        white-space: normal;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    #controls input[type="text"]::placeholder {
+        color: #888;
+        padding-left: 4px;
+    }
+}
