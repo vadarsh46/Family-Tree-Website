@@ -204,7 +204,7 @@ function buildTreeNode(person, rendered = new Set()) {
                 if (childNode) ul.appendChild(childNode);
             }
         });
-        li.appendChild(ul);
+        li.appendChild(ul)
     }
 
     rendered.add(person.id);
@@ -283,29 +283,17 @@ deletePersonBtn.addEventListener("click", () => {
     alert(`"${name}" has been deleted.`);
 });
 
-exportImageBtn.addEventListener("click", async () => {
-    try {
-        const canvas = await html2canvas(treeContainer, {
-            backgroundColor: "#ffffff",
-            scale: 2,
-            useCORS: true,
-            width: treeContainer.scrollWidth,
-            height: treeContainer.scrollHeight,
-            scrollX: 0,
-            scrollY: 0,
-            windowWidth: document.documentElement.offsetWidth,
-            windowHeight: document.documentElement.offsetHeight
+exportImageBtn.addEventListener("click", () => {
+    domtoimage.toPng(treeContainer)
+        .then(function (dataUrl) {
+            const link = document.createElement("a");
+            link.download = "family-tree.png";
+            link.href = dataUrl;
+            link.click();
+        })
+        .catch(function (error) {
+            console.error("Error exporting:", error);
         });
-
-        const dataUrl = canvas.toDataURL("image/png");
-        const a = document.createElement("a");
-        a.href = dataUrl;
-        a.download = `${selectedProfile.replace(/\s+/g, '_')}_FamilyTree.png`;
-        a.click();
-    } catch (err) {
-        console.error("Export failed:", err);
-        alert("Failed to export image. Check console for details.");
-    }
 });
 
 // Back button
